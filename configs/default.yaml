@@ -1,0 +1,35 @@
+seed: 42
+
+data:
+  metadata: "data/metadata.csv"
+  splits: "data/splits"
+
+image:
+  size: 224
+
+model:
+  backbone: "resnet18"
+  pretrained: true
+  embedding_dim: 256
+  dropout: 0.2
+
+training:
+  epochs: 25
+  batch_size: 32
+  lr: 0.0001
+  weight_decay: 0.0001
+  workers: 2
+  mixed_precision: true
+  patience: 5
+
+loss:
+  type: "supervised_contrastive"
+  temperature: 0.07
+  classification_weight: 0.2
+
+sampling:
+  strategy: "mixed"
+
+evaluation:
+  top_k: [1, 5, 10]
+  verification_threshold: 0.5
